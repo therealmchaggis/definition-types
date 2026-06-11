@@ -5,6 +5,34 @@ framework dependency. The only optional dependency is
 `symfony/expression-language`, needed solely by the [`calculated`
 type](usage/calculated.md).
 
+## From Git Repository
+
+Add the following to the `repositories` section of your `composer.json`:
+```json
+    {
+      "type": "git",
+      "url": "https://github.com/therealmchaggis/definition-types.git"
+    }
+```
+
+You should theb be able to:
+
+```bash
+composer require therealmchaggis/definition-types
+```
+
+or manually add the following to your `composer.json`:
+```
+        "therealmchaggis/definition-types": "dev-main",
+```
+
+and run:
+```bash
+composer update therealmchaggis/definition-types
+```
+
+
+
 ## From Packagist (once published)
 
 ```bash

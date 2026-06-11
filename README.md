@@ -15,11 +15,11 @@ in the generation of the documentation.
 
 A *data type* knows how to do three things with a value that has a field *definition*:
 
-| Responsibility | Method | Used for |
-| --- | --- | --- |
-| Format for display | `getFormated()` | rendering a stored value as text/HTML |
-| Render an input | `getFormComponent()` | drawing the form control used to edit the value |
-| Convert to raw | `convertToRaw()` | turning a submitted form value back into a DB value |
+| Responsibility     | Method               | Used for                                            |
+|--------------------|----------------------|-----------------------------------------------------|
+| Format for display | `getFormated()`      | rendering a stored value as text/HTML               |
+| Render an input    | `getFormComponent()` | drawing the form control used to edit the value     |
+| Convert to raw     | `convertToRaw()`     | turning a submitted form value back into a DB value |
 
 A **definition** is a plain array describing a field, e.g.:
 
@@ -40,8 +40,19 @@ $definition = [
 
 ## Installation
 
-Requires **PHP 8.1+**. While developed in-repo it is wired as a Composer **path
-repository**; once published, `composer require therealmchaggis/definition-types`
+Requires **PHP 8.1+**. While in developed, it is wired as a Composer registry:
+```json
+{
+  "repositories": [
+    {
+      "type": "git",
+      "url": "https://github.com/therealmchaggis/definition-types.git"
+    }
+  ]
+}
+```
+
+Once published, `composer require therealmchaggis/definition-types`
 is all you need. Full instructions — including the optional `calculated`
 dependency — are in [docs/installation.md](docs/installation.md).
 
@@ -57,19 +68,19 @@ The core is **pure PHP 8.1+** with no framework dependency. A handful of host
 globals are auto-detected when present and polyfilled or skipped when not, so the
 same package runs unchanged across environments:
 
-| Global | Used by | When the host doesn't provide it |
-| --- | --- | --- |
-| `esc()`, `is_required()` | form components | **polyfilled** by `src/polyfill.php` (auto-loaded) |
-| `helper()` | component loader | skipped (`function_exists` guard) |
-| `model()` | `picklist` value lookup | skipped → `getValues()` returns `[]` |
-| `format_value()` | `guid` & `readonly` components | **must be supplied by the host** if those components are used |
-| `APPPATH` | app override dirs | skipped (`defined()` guard); register extra dirs with `addSource()` |
+| Global                   | Used by                        | When the host doesn't provide it                                    |
+|--------------------------|--------------------------------|---------------------------------------------------------------------|
+| `esc()`, `is_required()` | form components                | **polyfilled** by `src/polyfill.php` (auto-loaded)                  |
+| `helper()`               | component loader               | skipped (`function_exists` guard)                                   |
+| `model()`                | `picklist` value lookup        | skipped → `getValues()` returns `[]`                                |
+| `format_value()`         | `guid` & `readonly` components | **must be supplied by the host** if those components are used       |
+| `APPPATH`                | app override dirs              | skipped (`defined()` guard); register extra dirs with `addSource()` |
 
-| Environment | Status | Guide |
-| --- | --- | --- |
-| Standalone PHP | ✅ Supported | [docs/usage/standalone.md](docs/usage/standalone.md) |
-| CodeIgniter 4 | ✅ Supported (manual wiring; bridge planned) | [docs/usage/codeigniter4.md](docs/usage/codeigniter4.md) |
-| Laravel | ✅ Supported (manual wiring; bridge planned) | [docs/usage/laravel.md](docs/usage/laravel.md) |
+| Environment    | Status                                      | Guide                                                    |
+|----------------|---------------------------------------------|----------------------------------------------------------|
+| Standalone PHP | ✅ Supported                                 | [docs/usage/standalone.md](docs/usage/standalone.md)     |
+| CodeIgniter 4  | ✅ Supported (manual wiring; bridge planned) | [docs/usage/codeigniter4.md](docs/usage/codeigniter4.md) |
+| Laravel        | ✅ Supported (manual wiring; bridge planned) | [docs/usage/laravel.md](docs/usage/laravel.md)           |
 
 ---
 
