@@ -1,0 +1,24 @@
+{
+    "name": "therealmchaggis/definition-types",
+    "description": "Framework-agnostic, definition-driven data types: display formatting, form components and raw DB conversion. Runs standalone, in CodeIgniter 4 and in Laravel.",
+    "license": "MIT",
+    "type": "library",
+    "require": {
+        "php": "^8.1"
+    },
+    "require-dev": {
+        "symfony/expression-language": "^7.3"
+    },
+    "suggest": {
+        "symfony/expression-language": "Enables the optional 'calculated' data type (expression-based fields and SQL export). Install with: composer require symfony/expression-language (^7.3)."
+    },
+    "autoload": {
+        "psr-4": {
+            "TheRealMchaggis\\DefinitionTypes\\": "src/"
+        },
+        "files": [
+            "src/polyfill.php"
+        ]
+    },
+    "minimum-stability": "stable"
+}
